@@ -1,17 +1,51 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  
-  <parent>
-    <groupId>org.jvnet.hudson.plugins</groupId>
-    <artifactId>plugin</artifactId>
-    <version>1.319</version>
-    <relativePath>../pom.xml</relativePath>
-  </parent> 
-
-  <groupId>hudson.plugins.qmake</groupId>
-  <artifactId>qmakebuilder</artifactId>
-  <name>Hudson QMake plugin</name>
+  <name>QMake Builder Plugin</name>
   <packaging>hpi</packaging>
-  <version>0.2</version>
-  <url>http://wiki.hudson-ci.org/display/HUDSON/qmakebuilder+Plugin</url>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.jenkins-ci.plugins</groupId>
+    <artifactId>plugin</artifactId>
+    <version>1.399</version><!-- which version of Jenkins is this plugin built against? -->
+  </parent>
+
+  <groupId>qmakebuilder</groupId>
+  <artifactId>qmakebuilder</artifactId>
+  <version>0.3</version>
+  <url>http://wiki.jenkins-ci.org/display/JENKINS/qmakebuilder+Plugin</url>
+
+  <!-- get every artifact through maven.glassfish.org, which proxies all the artifacts that we need -->
+  <repositories>
+    <repository>
+      <id>m.g.o-public</id>
+      <url>http://maven.glassfish.org/content/groups/public/</url>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>m.g.o-public</id>
+      <url>http://maven.glassfish.org/content/groups/public/</url>
+    </pluginRepository>
+  </pluginRepositories>
+  <scm>
+    <url>https://github.com/jenkinsci/qmakebuilderplugin</url>
+    <connection>scm:git:ssh://github.com/jenkinsci/qmakebuilder.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/jenkinsci/qmakebuilder.git</developerConnection>
+  </scm>
+
+  <developers>
+    <developer>
+      <id>danimo</id>
+      <name>Daniel Molkentin</name>
+      <email>daniel@molkentin.de</email>
+    </developer>
+  </developers>
+
+  <distributionManagement>
+    <repository>
+      <id>maven.jenkins-ci.org</id>
+      <url>http://maven.jenkins-ci.org:8081/content/repositories/releases/</url>
+    </repository>
+  </distributionManagement>
 </project>
+
