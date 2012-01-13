@@ -10,7 +10,7 @@
 
   <groupId>qmakebuilder</groupId>
   <artifactId>qmakebuilder</artifactId>
-  <version>0.3</version>
+  <version>0.3-SNAPSHOT</version>
   <url>http://wiki.jenkins-ci.org/display/JENKINS/qmakebuilder+Plugin</url>
 
   <!-- get every artifact through maven.glassfish.org, which proxies all the artifacts that we need -->

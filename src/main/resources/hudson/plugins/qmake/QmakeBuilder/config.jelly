@@ -1,11 +1,26 @@
+<?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
 
-  <f:entry title="Qmake project file" field="projectFile">
-    	<f:textbox />
-  </f:entry>
-    
-  <f:entry title="Extra arguments to qmake (optional)" field="extraArguments">
-    	<f:textbox  />
-  </f:entry>
-	
+    <f:entry title="${%Qmake project file}" field="projectFile">
+        <f:textbox />
+    </f:entry>
+
+    <f:entry title="${%Extra arguments to qmake (optional)}" field="extraArguments">
+        <f:textbox name="qmakebuilder.extraArguments" value="${instance.getExtraArguments()}" />
+    </f:entry>
+
+    <f:entry title="${%Extra build targets (optional)}" field="extraTargets">
+        <f:textbox name="qmakebuilder.extraTargets" value="${instance.getExtraTargets()}" />
+    </f:entry>
+
+    <f:block>
+        <table>
+            <f:optionalBlock name="qmakebuilder.useShadowBuild" checked="${instance.getUseShadowBuild()}" title="${%Use shadow build}" inline="true">
+                <f:entry title="${%Build directory (optional)}" field="shadowBuildDir">
+                    <f:textbox name="qmakebuilder.shadowBuildDir" value="${instance.getShadowBuildDir()}" />
+                </f:entry>
+            </f:optionalBlock>
+        </table>
+    </f:block>
+
 </j:jelly>
