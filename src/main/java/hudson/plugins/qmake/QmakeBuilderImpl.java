@@ -4,8 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import hudson.FilePath;
-public
-class QmakeBuilderImpl {
+import hudson.model.Node;
+
+public class QmakeBuilderImpl {
 
 	private static final String QMAKE_DEFAULT = "qmake";
 
@@ -17,7 +18,7 @@ class QmakeBuilderImpl {
 	}
 
 	void setQmakeBin(Map<String, String> envVars,
-			String globalQmakeBin, boolean isWindows) throws IOException, InterruptedException {
+			String globalQmakeBin, Node node, boolean isWindows) throws IOException, InterruptedException {
 		qmakeBin = QMAKE_DEFAULT;
 
 		if (globalQmakeBin != null && globalQmakeBin.length() > 0) {
@@ -33,9 +34,9 @@ class QmakeBuilderImpl {
 			else
 				checkName += "/bin/qmake";
 
-			File fileInfo = new File(checkName);
+			FilePath fileInfo = new FilePath(node.getRootPath(), checkName);
 			if (fileInfo.exists())
-				qmakeBin = fileInfo.toString();
+				qmakeBin = checkName;
 		}
 	}
 

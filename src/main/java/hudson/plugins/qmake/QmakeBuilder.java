@@ -83,7 +83,7 @@ public class QmakeBuilder extends Builder {
 		String theProjectFile = EnvVarReplacer.replace(this.projectFile, envVars).trim();
 
 		try {
-			this.builderImpl.setQmakeBin(envVars, getDescriptor().getQmakePath(), isWindows);
+			this.builderImpl.setQmakeBin(envVars, getDescriptor().getQmakePath(), build.getBuiltOn(), isWindows);
 		} catch (Exception e) {
 			logger.println("Exception while processing qmake path: " + getDescriptor().getQmakePath());
 			logger.println(e.getMessage());
@@ -111,6 +111,11 @@ public class QmakeBuilder extends Builder {
 
 		String qmakeCall = builderImpl.buildQMakeCall(projectFilePath, EnvVarReplacer.replace(this.extraArguments, envVars));
 		logger.println("QMake call : " + qmakeCall);
+
+    if (envVars.containsKey("QTDIR"))
+			logger.println("QTDIR="+envVars.get("QTDIR"));
+		else
+			logger.println("QTDIR not set.");
 
 		try {
 			int result = launcher.launch().cmds(Util.tokenize(qmakeCall)).envs(envVars).stdout(logger).pwd(buildDir).join();
